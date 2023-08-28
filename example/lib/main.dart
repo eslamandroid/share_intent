@@ -23,11 +23,6 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     // initPlatformState();
-    _shareIntentPlugin.getIntentStream().listen((event) {
-      setState(() {
-        _platformVersion = event['url'];
-      });
-    });
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -53,15 +48,24 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
-        ),
-      ),
-    );
+    return StreamBuilder<Map>(
+        stream: _shareIntentPlugin.getIntentStream(),
+        builder: (context, snapshot) {
+          String url = '';
+          if (snapshot.hasData) {
+            Map data = snapshot.data as Map;
+            url = data['url'];
+          }
+          return MaterialApp(
+            home: Scaffold(
+              appBar: AppBar(
+                title: const Text('Plugin example app'),
+              ),
+              body: Center(
+                child: Text('Running on: $url\n'),
+              ),
+            ),
+          );
+        });
   }
 }

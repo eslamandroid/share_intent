@@ -17,6 +17,6 @@ class ShareIntent {
   }
 
   Stream<Map> getIntentStream() async* {
-    yield* _eventChannel.receiveBroadcastStream().asyncMap<Map>((data) => data);
+      yield* _eventChannel.receiveBroadcastStream().asyncMap<Map>((data) => data);
   }
 }
