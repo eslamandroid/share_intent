@@ -1,7 +1,7 @@
 name: share_intent
-description: A new Flutter project.
+description: A flutter plugin that allow flutter apps to receive text or url from another app.
 version: 0.0.1
-homepage:
+homepage: https://github.com/eslamandroid/share_intent
 
 environment:
   sdk: '>=3.0.2 <4.0.0'
