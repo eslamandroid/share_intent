@@ -51,8 +51,11 @@ class _MyAppState extends State<MyApp> {
     return StreamBuilder<Map>(
         stream: _shareIntentPlugin.getIntentStream(),
         builder: (context, snapshot) {
+          print("ESLAM");
+          print(snapshot.data);
           String url = '';
           if (snapshot.hasData) {
+            print(snapshot.data);
             Map data = snapshot.data as Map;
             url = data['url'];
           }
